@@ -1,0 +1,206 @@
+.header {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0px;
+    z-index: 15;
+    width: 100%;
+    padding: 1.8rem 30px;
+    min-height: 80px;
+    max-height: 80px;
+    background-color: #030852;
+    
+  }
+
+  .divider{
+     width: 1px;
+    height: 24px;
+    background-color: #343434;
+    margin: 3px 0px;
+  }
+/* 
+  .header-main{
+    position: relative;
+  }
+
+  .header-child{
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: calc(100% - (var(--sidebar-width)));
+    padding: 1.8rem 30px;
+    min-height: 220px;
+    max-height: 80px;
+    z-index: 14;
+    border-bottom: 1px solid var(--topbar-border);
+    background-image: linear-gradient(to right, #EB2F96, #722ED1);
+  } */
+
+  .header .header-left{
+    width: 33.3%;
+  }
+
+  .header .head-middle{
+    width: 33.3%;
+  }
+
+  .header .head-middle h5{
+    color: #FAFAFA;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0px;
+  }
+  
+  .header .header-left .nav-title {
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+     background: linear-gradient(to right, #EB2F96, #722ED1);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+
+  .header .header-left img{
+    width: 100px;
+    height: 30px;
+    margin-right: 20px;
+  }
+
+  .nav-title .nav-sep{
+    color: rgb(255, 255, 255,0.4)!important;
+    
+  }
+
+  .header .header-left .sidebar-logo{
+    width: 140px;
+    height: 30px;
+  }
+
+
+  .header .header-right img.header-notifi{
+    width: 20px;
+    height: 20px;
+    max-width: 32px;
+    max-height: 32px;
+    cursor: pointer;
+    margin-right: 24px;
+  } 
+  .header .header-right img.profile-img {
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .header .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .header .header-right .header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    border-radius: 50%;
+    background: grey;
+    cursor: pointer;
+  }
+  
+  .header .header-right .header-icon.cart::after {
+    content: attr(55);
+    position: absolute;
+    top: 0px;
+    right: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    max-width: 14px;
+    min-height: 14px;
+    max-height: 14px;
+    line-height: 14px;
+    border-radius: 50%;
+    font-size: 10px;
+    background: blue;
+    color: white;
+  }
+  
+  .header .header-right .header-icon img {
+    max-width: 100%;
+  }
+  
+
+  .profile-img-wrapper {
+  position: relative;
+    cursor: pointer;
+    z-index: 1900;
+}
+  
+  .header .header-right .header-profile-dropdown {
+    position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 170px;
+  background: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  padding: 0 15px;
+  margin: 0;
+  overflow: hidden;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: 0.18s ease-in-out all;
+  }
+
+  .profile-img-wrapper:hover .header-profile-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+  
+  /* .header .header-right .profile-img:hover .header-profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  } */
+  
+  .header .header-right .header-profile-dropdown li {
+    list-style: none;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: 0.12s ease-in-out all;
+    border-bottom: 1px solid grey;
+    color: black;
+    font-size: 13px;
+  }
+  
+  .header .header-right .header-profile-dropdown li:hover {
+    /* background: var(--primary); */
+    color: blue;
+  }
+  
+  .header .header-right .header-profile-dropdown li.logout:hover {
+    /* background: rgba(255, 0, 0, 0.65); */
+    color: #ff0000;
+  }
+
+  .profile-name{
+    color: #030852;
+  }
+  
+  /***** END OF HEADER *****/
