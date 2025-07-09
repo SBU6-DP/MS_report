@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./topbar.css";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 import profile from "../../../images/icons/profile-1.jpg";
@@ -18,14 +18,16 @@ import Avatar from '@mui/material/Avatar';
 
 function Topbar() {
   const navigate = useNavigate();
+  const location = useLocation()
+  console.log(window.location.origin)
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { instance, accounts } = useMsal();
 
   const handleLogout = () => {
-    // instance.logoutRedirect({
-    //   postLogoutRedirectUri: "http://localhost:3000/", // 🔁 Back to login page or home
-    // });
-    navigate('/')
+    instance.logoutRedirect({
+      postLogoutRedirectUri: window.location.origin, // 🔁 Back to login page or home
+    });
+    // navigate('/')
   };
 
   console.log(accounts);

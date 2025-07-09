@@ -132,10 +132,10 @@ function Documents() {
                 <p className='Description'>Your reports are ready. Dive in to uncover key insights.</p>
             </div>
 
-            <div className='row'>
+            <div className='row doc-row'>
                 {
                     data?.map((result)=>{
-                        return <div className='col-4'>
+                        return <div className='col-4 p-0'>
                     <div className='Files-MS' onClick={()=>onView(result)}>
                         <div className='Future-rebate'>
                             <div>

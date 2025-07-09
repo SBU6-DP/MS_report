@@ -43,7 +43,7 @@
   }
 
   .header .head-middle{
-    width: 33.3%;
+    
   }
 
   .header .head-middle h5{
@@ -100,8 +100,9 @@
   .header .header-right {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 16px;
+    width: 33.3%;
   }
   
   .header .header-right .header-icon {
