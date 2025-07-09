@@ -107,7 +107,7 @@
       border-radius: 4px;
       background-color: #ffffff;
       position: relative;
-      border: 1px solid black;
+      border: 1px solid #D0D5DD;
       transition: background-color 0.2s ease;
     }
 

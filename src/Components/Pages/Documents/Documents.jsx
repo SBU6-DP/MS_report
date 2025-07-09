@@ -15,14 +15,31 @@ function Documents() {
     const dispatch =useDispatch()
     const [data, setData] = useState([
       {
-        name: "Future Rebate Chargeback Accrual Forecast Report",
+        name: "Future Rebate Chargeback Accrual Forecast",
+        id:1,
         type: "xlsx",
         path: "/data/Future Rebate Chargeback Accrual Forecast Report v2.xlsx",
+        monthPath:"/data/Future Rebate Chargeback Accrual Forecast Report - Month.xlsx",
+        quarterPath:"/data/Future Rebate Chargeback Accrual Forecast Report - Quarter.xlsx",
         filterHead:'Customize Your Forecast View',
         filterSubHead:'Apply filters to focus on the most relevant rebate and accrual data.',
         resultHead:'Filtered Forecast Results',
         resultSubHead:'Here’s your updated rebate accrual forecast based on the selected filters.',
         description:'Here’s your updated rebate accrual forecast based on the selected filters.',
+        monthPathData:{
+            products:"Aminomix 1 Novum, Aminosteril N-Hepa 8%, Omegaven, Kabimustine, Bevacizumab",
+            wholesaler:'AmerisourceBergen, Cardinal Health, McKesson',
+            periodType:'Month',
+            period:'April 2025',
+            runBy:'Admin'
+        },
+        quarterPathData:{
+             products:"Aminomix 1 Novum, Aminosteril N-Hepa 8%, Omegaven, Kabimustine, Bevacizumab",
+            wholesaler:'AmerisourceBergen, Cardinal Health, McKesson',
+            periodType:'Quarter',
+            period:'Q2 2025',
+            runBy:'Admin'
+        },
         customerData:{
             products:"ALL",
             customer:'AmerisourceBergen, Cardinal Health, McKesson',
@@ -32,10 +49,11 @@ function Documents() {
       },
       {
         name: "Gross-to-Net Impact Analysis",
+        id:2,
         type: "xlsx",
         path: "/data/Gross-to-Net Impact Analysis.xlsx",
-        filterHead:'Customize Your Trend View',
-        filterSubHead:'Apply filters to analyze historical patterns relevant to your business goals.',
+        filterHead:'Customize Your GTN View',
+        filterSubHead:'Apply filters to focus on key variables affecting gross-to-net performance across segments.',
         resultHead:'Filtered GTN Analysis',
         resultSubHead:'These results highlight how specific factors are impacting your net revenue.',
         customerData:{
@@ -47,8 +65,9 @@ function Documents() {
         }
       },
       {
-        name: "Historical Performance Trend Report",
+        name: "Historical Performance Trend",
         type: "xlsx",
+        id:3,
         path: "/data/Historical Performance Trend Report (1).xlsx",
         filterHead:'Customize Your Trend View',
         filterSubHead:'Apply filters to analyze historical patterns relevant to your business goals.',
@@ -56,39 +75,44 @@ function Documents() {
         resultSubHead:'Here’s the historical performance data based on your selected filters.',
         customerData:{
             products:"ALL",
-            periodType:'Quater',
-            period:'Q1,2025 - Q2,2025',
+            periodType:'Quarter',
+            period:'Q12025 - Q22025',
             runBy:'Admin'
         }
       },
       {
-        name: "Report Names and Prompts",
+        name: "Chargeback Discrepancy",
         type: "xlsx",
-        path: "/data/Report Names and Prompts v2.xlsx",
+        id:4,
+        path: "/data/Chargeback Discrepancy Report 3.xlsx",
         filterHead:'Customize Your Report',
-        filterSubHead:'Apply filters to focus on the reports.',
-        resultHead:'Report Names and Prompts v2 Results',
-        resultSubHead:'Here’s your updated Report Names and Prompts v2 based on the selected filters.',
+        filterSubHead:'Apply filters to isolate specific chargeback variances for detailed reconciliation.',
+        resultHead:'Filtered Chargeback Variances',
+        resultSubHead:'These filtered results help you identify patterns and root causes behind chargeback discrepancies.',
         description:'Here’s your updated Report Names and Prompts v2 based on the selected filters.',
         customerData:{
+            contract:'Vizient Nephrology',
+            wholesaler:'AmerisourceBergen, McKesson',
+            periodType:'Date Range',
             products:"ALL",
             customer:'AmerisourceBergen, Cardinal Health, McKesson',
-            period:'Q3 2025',
+            period:'06/01/2025 - 06/15/2025',
             runBy:'Admin'
         }
       },
       {
-        name: "Accrual vs. Actual Variance Report",
+        name: "Accrual vs. Actual Variance",
         type: "xlsx",
+        id:5,
         path: "/data/Accrual vs. Actual Variance Report.xlsx",
          filterHead:'Customize Variance View',
         filterSubHead:'Apply filters to focus on specific accrual and actual performance data for deeper variance analysis.',
         resultHead:'Filtered Variance Report',
         resultSubHead:'Review how your selected parameters affect the gap between accruals and actuals.',
         customerData:{
-            products:"ALL",
-            periodType:'Quater',
-            period:'Q1,2025 - Q2,2025',
+            contractId:'00143689',
+            program:'Aminomix Rebate 2025',
+            period:'Q12025',
             runBy:'Admin'
         }
       },
@@ -119,7 +143,7 @@ function Documents() {
                             </div>
                             <div className='Future-rebate-para-content'>
                                 <p className='Future-rebate-content'>{result?.name}</p>
-                                <p className='Future-rebate-lastseen'>Last Opened - {format(new Date(),"dd-MMM-yyyy HH:mm")}</p>
+                                <p className='Future-rebate-lastseen'>Last Opened - {format(new Date(),"dd MMM yyyy, HH:mm a")}</p>
                             </div>
                         </div>
 

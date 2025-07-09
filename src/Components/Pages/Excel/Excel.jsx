@@ -6,7 +6,7 @@ import ReactPaginate from "react-paginate";
 import * as XLSX from "xlsx";
 import Papa from "papaparse";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {format} from 'date-fns'
 import { saveAs } from "file-saver";
 
@@ -21,10 +21,12 @@ const currencyColumns = [
   "Worst Case (3% Less)",
 ];
 
-const ITEMS_PER_PAGE = 40;
+const ITEMS_PER_PAGE = 100;
 
 function Excel() {
     const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location)
  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 const { xcelData } = useSelector((state) => state.criteria)
@@ -32,7 +34,7 @@ const { xcelData } = useSelector((state) => state.criteria)
 console.log(xcelData)
 
   useEffect(() => {
-    fetch(`${xcelData?.path}`)
+    fetch(`${xcelData?.id===1?location?.state?.period==='month'?xcelData?.monthPath:xcelData?.quarterPath :xcelData?.path}`)
       .then((res) => res.arrayBuffer())
       .then((ab) => {
         const workbook = XLSX.read(ab, {
@@ -104,7 +106,7 @@ console.log(xcelData)
       <div className="container-fluid p-0">
         <div className="excel-breadcrumb">
           <div className="left-head">
-            <div className="left-arrow" onClick={()=>navigate('/doc/filter')}>Back to Home</div>
+            <div className="left-arrow" onClick={()=>navigate('/doc')}>Back to Home</div>
             <div className="left-content">
              {xcelData?.name}
             </div>
@@ -115,47 +117,114 @@ console.log(xcelData)
           <div className="excel-filter">
             <div>
               <div className="desc">
-                <h3>Filtered Forecast Results</h3>
+                <h3>{xcelData?.resultHead}</h3>
                 <h6>
-                  Here’s your updated rebate accrual forecast based on the
-                  selected filters.
+                 {xcelData?.resultSubHead}
                 </h6>
               </div>
             </div>
             <div className="d-flex align-items-center">
-                <div className="me-3" style={{color:'#475467'}}>Confidential Information of Fresenius Kabi.  Do not copy or distribute.</div>
+                <div className="me-3" style={{color:'#475467', fontSize:12}}>Confidential Information of Fresenius Kabi.  Do not copy or distribute.</div>
               <button className="export-xl" onClick={()=>downloadAsExcel(xcelData?.path,xcelData?.name)}>Export as Excel</button>
             </div>
           </div>
           <div>
-            <Container className="mt-4" fluid>
+            <Container className="mt-4 p-0" fluid>
               <Card>
-                <CardHeader>
+                <CardHeader className="py-3">
                     <div className="container-fluid">
                         <div className="d-flex gap-5">
-                            <div>
-                                <h5>Products</h5>
-                                <h4>{xcelData?.customerData?.products}</h4>
-                            </div>
                             {
-                                xcelData?.customerData?.customer ? <div>
-                                <h5>Customer</h5>
-                                <h4>{xcelData?.customerData?.customer}</h4>
-                            </div> : xcelData?.customerData?.GPO ? <div>
+                                xcelData?.id===4 || xcelData?.id===5 ?' ': <div className="result-head">
+                                <h5>Products</h5>
+                                <h4>{xcelData?.id===1 ? location?.state?.period==='month' ? xcelData?.monthPathData?.products:xcelData?.quarterPathData?.products :xcelData?.customerData?.products}</h4>
+                            </div>
+                            }
+                           
+                            {
+                                xcelData?.id===1 ? <><div className="result-head">
+                                    <h5>Wholesaler</h5>
+                                    <h4>{xcelData?.id===1?location?.state?.period==='month'?xcelData?.monthPathData?.wholesaler:xcelData?.quarterPathData?.wholesaler :'' }</h4>
+                                    </div>
+                                    <div className="result-head">
+                                <h5>Period Type</h5>
+                                <h4>{xcelData?.id===1?location?.state?.period==='month'?xcelData?.monthPathData?.periodType:xcelData?.quarterPathData?.periodType :'' }</h4>
+                            </div>
+                            <div className="result-head">
+                                <h5>Period</h5>
+                               <h4>{xcelData?.id===1?location?.state?.period==='month'?xcelData?.monthPathData?.period:xcelData?.quarterPathData?.period :'' }</h4>
+                            </div></>:''
+                            }
+
+                            {
+                                xcelData?.id ===2 && <>
+                                <div className="result-head">
                                 <h5>GPO</h5>
                                 <h4>{xcelData?.customerData?.GPO}</h4>
-                            </div>  :''
-                            }
-                            
-                            <div>
+                            </div>
+                            <div className="result-head">
                                 <h5>Period</h5>
                                 <h4>{xcelData?.customerData?.period}</h4>
                             </div>
-                            <div>
+                                </>
+                            }
+
+                            {
+                                xcelData?.id ===3 && <>
+                                <div className="result-head">
+                                <h5>Period Type</h5>
+                                <h4>{xcelData?.customerData?.periodType}</h4>
+                            </div>
+                            <div className="result-head">
+                                <h5>Period</h5>
+                                <h4>{xcelData?.customerData?.period}</h4>
+                            </div>
+                                </>
+                            }
+
+                            {
+                                xcelData?.id===4 ?<>
+                                <div className="result-head">
+                                <h5>Contract</h5>
+                                <h4>{xcelData?.customerData?.contract}</h4>
+                            </div>
+                            <div className="result-head">
+                                <h5>wholesaler</h5>
+                                <h4>{xcelData?.customerData?.wholesaler}</h4>
+                            </div>
+                                <div className="result-head">
+                                <h5>Period Type</h5>
+                                <h4>{xcelData?.customerData?.periodType}</h4>
+                            </div>
+                            <div className="result-head">
+                                <h5>Period</h5>
+                                <h4>{xcelData?.customerData?.period}</h4>
+                            </div>
+                                </> :''
+                            }
+
+                            {
+                                xcelData?.id===5 ? <>
+                                 <div className="result-head">
+                                <h5>Contract ID</h5>
+                                <h4>{xcelData?.customerData?.contractId}</h4>
+                            </div>
+                            <div className="result-head">
+                                <h5>Program</h5>
+                                <h4>{xcelData?.customerData?.program}</h4>
+                            </div>
+                            <div className="result-head">
+                                <h5>Period</h5>
+                                <h4>{xcelData?.customerData?.period}</h4>
+                            </div>
+                                </>:''
+                            }
+                            
+                           <div className="result-head">
                                 <h5>Run Date</h5>
                                 <h4>{format(new Date(),'dd MMM yyyy')}</h4>
                             </div>
-                            <div>
+                            <div className="result-head">
                                 <h5>Run By</h5>
                                 <h4>{xcelData?.customerData?.runBy}</h4>
                             </div>
@@ -195,7 +264,6 @@ console.log(xcelData)
                   ) : (
                     <p>Loading...</p>
                   )}
-
                   <ReactPaginate
                     breakLabel="..."
                     nextLabel=">"
@@ -215,6 +283,7 @@ console.log(xcelData)
                     breakLinkClassName="page-link"
                     activeClassName="active"
                   />
+                  <div style={{fontSize:12,color:'#475467'}}>Powered by SRM Tech</div>
                 </CardBody>
               </Card>
             </Container>

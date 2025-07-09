@@ -62,7 +62,7 @@ function Topbar() {
               />
               <img src={bell} className="header-notifi" /> */}
               <div className="profile-img-wrapper">
-                <Avatar style={{backgroundColor:'F0F5FF',color:'black'}}>{accounts[0]?.name?.charAt(0)?.toUpperCase()}</Avatar>
+                <Avatar style={{backgroundColor:'#ADC6FF',color:'#344054',fontWeight:550}}>{accounts[0]?.name?.charAt(0)?.toUpperCase()}</Avatar>
                 {/* <img
                 src={profile}
                 className="profile-img"
