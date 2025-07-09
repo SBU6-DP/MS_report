@@ -53,7 +53,7 @@ function Login() {
                   <div className="divider"></div>
                   <img src={brand}/>
                 </div>
-                <h4>MS Reports</h4>
+                <h4>SRM Insights360</h4>
                 <h6>Welcome back! Please enter your details.</h6>
               </div>
               <div className="login-form">

@@ -41,7 +41,7 @@ function Topbar() {
           </h6>
         </div>
         <div className="head-middle">
-            <h5>MS Reports</h5>
+            <h5>SRM Insights360</h5>
         </div>
         <div className="header-right">
           {/* <div className="header-icon">
