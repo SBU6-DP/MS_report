@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './documents.css'
 import Layouts from '../Layouts/Layouts'
 import noteimg from '../../../images/icons/Green-note.svg'
-import xcl from '../../../images/icons/xlsx.svg'
+import xcl from '../../../images/icons/doc_file.svg'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setXcelData } from '../../redux/features/criteriaSlice'
@@ -18,9 +18,11 @@ function Documents() {
         name: "Future Rebate Chargeback Accrual Forecast",
         id:1,
         type: "xlsx",
-        path: "/data/Future Rebate Chargeback Accrual Forecast Report v2.xlsx",
-        monthPath:"/data/Future Rebate Chargeback Accrual Forecast Report - Month.xlsx",
-        quarterPath:"/data/Future Rebate Chargeback Accrual Forecast Report - Quarter.xlsx",
+        path: "/newData/Future Rebate Chargeback Accrual Forecast Report v2.xlsx",
+        monthPath:"/newData/Future Rebate Chargeback Accrual Forecast Report - Month.xlsx",
+        quarterPath:"/newData/Future Rebate Chargeback Accrual Forecast Report - Quarter.xlsx",
+        dMonthPath:"/downloadFiles/Future Rebate Chargeback Accrual Forecast Report - Month.xlsx",
+        dquarterPath:"/downloadFiles/Future Rebate Chargeback Accrual Forecast Report - Quarter.xlsx",
         filterHead:'Customize Your Forecast View',
         filterSubHead:'Apply filters to focus on the most relevant rebate and accrual data.',
         resultHead:'Filtered Forecast Results',
@@ -51,15 +53,16 @@ function Documents() {
         name: "Gross-to-Net Impact Analysis",
         id:2,
         type: "xlsx",
-        path: "/data/Gross-to-Net Impact Analysis.xlsx",
+        path: "/newData/Gross-to-Net Impact Analysis Report.xlsx",
+        dpath: "/downloadFiles/Gross-to-Net Impact Analysis Report.xlsx",
         filterHead:'Customize Your GTN View',
         filterSubHead:'Apply filters to focus on key variables affecting gross-to-net performance across segments.',
         resultHead:'Filtered GTN Analysis',
         resultSubHead:'These results highlight how specific factors are impacting your net revenue.',
         customerData:{
-            products:"Aminomix 1 Novum",
-            periodType:'Q12025',
-            period:'Q12025',
+            products:"Aminomix 1 Novum, Aminosteril N-Hepa 8%",
+            periodType:'Quater',
+            period:'Q22025',
             runBy:'Admin',
             GPO:'Premier'
         }
@@ -69,6 +72,10 @@ function Documents() {
         type: "xlsx",
         id:3,
         path: "/data/Historical Performance Trend Report (1).xlsx",
+        monthPath:"/newData/Historical Performance Trend Report - Month.xlsx",
+        quarterPath:"/newData/Historical Performance Trend Report - Quarter.xlsx",
+        dMonthPath:"/downloadFiles/Historical Performance Trend Report - Month.xlsx",
+        dquarterPath:"/downloadFiles/Historical Performance Trend Report - Quarter.xlsx",
         filterHead:'Customize Your Trend View',
         filterSubHead:'Apply filters to analyze historical patterns relevant to your business goals.',
         resultHead:'Filtered Trend Insights',
@@ -78,13 +85,26 @@ function Documents() {
             periodType:'Quarter',
             period:'Q12025 - Q22025',
             runBy:'Admin'
-        }
+        },
+        monthPathData:{
+            products:"Aminomix 1 Novum, Aminosteril N-Hepa 8%",
+            periodType:'Month',
+            period:'Jan 2025 Vs Feb 2025',
+            runBy:'Admin'
+        },
+        quarterPathData:{
+             products:"Aminomix 1 Novum, Aminosteril N-Hepa 8%, Omegaven, Kabimustine, Bevacizumab",
+            periodType:'Quarter',
+            period:'Q1 2025 Vs Q2 2025',
+            runBy:'Admin'
+        },
       },
       {
         name: "Chargeback Discrepancy",
         type: "xlsx",
         id:4,
-        path: "/data/Chargeback Discrepancy Report 3.xlsx",
+        path: "/newData/Chargeback Discrepancy Report.xlsx",
+        dpath: "/downloadFiles/Chargeback Discrepancy Report.xlsx",
         filterHead:'Customize Your Report',
         filterSubHead:'Apply filters to isolate specific chargeback variances for detailed reconciliation.',
         resultHead:'Filtered Chargeback Variances',
@@ -101,11 +121,12 @@ function Documents() {
         }
       },
       {
-        name: "Accrual vs. Actual Variance",
+        name: "Accrual vs Actual Variance",
         type: "xlsx",
         id:5,
-        path: "/data/Accrual vs. Actual Variance Report.xlsx",
-         filterHead:'Customize Variance View',
+        path: "/newData/Accrual vs Actual Variance Report.xlsx",
+        dpath: "/downloadFiles/Accrual vs Actual Variance Report.xlsx",
+        filterHead:'Customize Variance View',
         filterSubHead:'Apply filters to focus on specific accrual and actual performance data for deeper variance analysis.',
         resultHead:'Filtered Variance Report',
         resultSubHead:'Review how your selected parameters affect the gap between accruals and actuals.',

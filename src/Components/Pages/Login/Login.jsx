@@ -38,8 +38,8 @@ function Login() {
   };
 
   const login = () => {
-    // instance.loginRedirect({ scopes: ["user.read"] });
-    navigate('/doc')
+    instance.loginRedirect({ scopes: ["user.read"] });
+    // navigate('/doc')
   };
   return (
     <div className="container-fluid login-bg">

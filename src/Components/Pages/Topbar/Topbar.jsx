@@ -24,10 +24,10 @@ function Topbar() {
   const { instance, accounts } = useMsal();
 
   const handleLogout = () => {
-    // instance.logoutRedirect({
-    //   postLogoutRedirectUri: window.location.origin, // 🔁 Back to login page or home
-    // });
-    navigate('/')
+    instance.logoutRedirect({
+      postLogoutRedirectUri: window.location.origin, // 🔁 Back to login page or home
+    });
+    // navigate('/')
   };
 
   console.log(accounts);

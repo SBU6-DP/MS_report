@@ -97,6 +97,7 @@ function Filter() {
   const [toDate, setToDate] = useState(null);
   const { xcelData } = useSelector((state) => state.criteria);
   const [selectedPeriod, setSelectedPeriod] = useState(""); // 'month' | 'quarter'
+  console.log(xcelData)
 
   useEffect(() => {
   const radios = document.querySelectorAll(".Month-selector-button");
@@ -160,7 +161,7 @@ const applyfilter =()=>{
                   <p className="Period">Period</p>
 
                   {/* Date Radio */}
-                  {xcelData?.id===2 ||xcelData?.id===3 || xcelData?.id===4 ? (
+                  {xcelData?.id===2 || xcelData?.id===4 ? (
                     <div className="month-selector mt-4">
                       <div className="d-flex align-items-center">
                         <input
@@ -184,7 +185,7 @@ const applyfilter =()=>{
                           <label className="mb-2">Select From Date</label>
                           <DatePicker
                             placeholderText="Select From Date"
-                            dateFormat="d MMMM yyyy"
+                            dateFormat="MM/dd/yyyy"
                             className="styled-datepicker"
                             calendarClassName="calendar-style"
                             showMonthDropdown
@@ -197,7 +198,7 @@ const applyfilter =()=>{
                           <label className="mb-2 mt-3">Select To Date</label>
                           <DatePicker
                             placeholderText="Select To Date"
-                            dateFormat="d MMMM yyyy"
+                            dateFormat="MM/dd/yyyy"
                             className="styled-datepicker"
                             calendarClassName="calendar-style"
                             showMonthDropdown
@@ -235,7 +236,7 @@ const applyfilter =()=>{
                           }}
                         >
                           <div className="Month-select">
-                            <label>Select From Month & Year</label>
+                            <label>{`Select ${xcelData?.id===3? '' :'From'} Month & Year`}</label>
                             <div className="Month-options">
                               <Select
                                 styles={customStyles}
@@ -258,7 +259,7 @@ const applyfilter =()=>{
                           }}
                         >
                           <div className="Month-select">
-                            <label>Select To Month & Year</label>
+                            <label>{`Select ${xcelData?.id===3? '' :'To'} Month & Year`}</label>
                             <div className="Month-options">
                               <Select
                                 styles={customStyles}
@@ -276,11 +277,12 @@ const applyfilter =()=>{
                       </>
                     ) : (
                       <>
-                        <div
+                      {
+                        xcelData?.id!==3 &&  <div
                           className="Month-Dropdown"
                           style={{
                             display:
-                              selectedPeriod === "month" ? "block" : "none",
+                              selectedPeriod === "month" && xcelData?.id!==3 ? "block" : "none",
                           }}
                         >
                           <div className="Month-select">
@@ -299,6 +301,8 @@ const applyfilter =()=>{
                             </div>
                           </div>
                         </div>
+                      }
+                       
                       </>
                     )}
                   </div>
@@ -323,7 +327,7 @@ const applyfilter =()=>{
                     {xcelData?.id === 2 || xcelData?.id===3 || xcelData?.id===4 ? (
                       <>
                         <div className="Month-select mb-2">
-                          <label>Select From Quarter & Year</label>
+                          <label>{`Select ${xcelData?.id===3? '' :'From'} Quater & Year`}</label>
                           <div className="Month-options">
                             <Select
                               styles={customStyles}
@@ -338,7 +342,7 @@ const applyfilter =()=>{
                           </div>
                         </div>
                         <div className="Month-select">
-                          <label>Select To Quarter & Year</label>
+                          <label>{`Select ${xcelData?.id===3? '' :'To'} Quater & Year`}</label>
                           <div className="Month-options">
                             <Select
                               styles={customStyles}
@@ -453,6 +457,11 @@ const applyfilter =()=>{
                     <label class="checkbox-container select-box">
                       <input type="checkbox" />
                       <span class="custom-checkbox m-0"></span>
+                      Bevacizumab
+                    </label>
+                    <label class="checkbox-container select-box">
+                      <input type="checkbox" />
+                      <span class="custom-checkbox m-0"></span>
                       Kabisulfan
                     </label>
                     <label class="checkbox-container select-box">
@@ -475,45 +484,6 @@ const applyfilter =()=>{
 
                 </div>
                   
-                </div>
-              </div>
-            </div> :''
-            }
-
-            {
-             xcelData?.id===5 ? <div className="col-3">
-              <div className="Products-Forecast">
-                <div className="d-flex justify-content-between filter-height">
-                  <div className="products-categories">
-                    <p className="">Program</p>
-                    {/* <p className='period-selection'>2 Products Selected</p> */}
-
-                    <label class="checkbox-container select-box">
-                      <input type="checkbox" />
-                      <span class="custom-checkbox m-0"></span>
-                      Select All
-                    </label>
-
-                    <label class="checkbox-container select-box">
-                      <input type="checkbox" />
-                      <span class="custom-checkbox m-0"></span>
-                      Aminomix Rebate 2025
-                    </label>
-                    <label class="checkbox-container select-box">
-                      <input type="checkbox" />
-                      <span class="custom-checkbox m-0"></span>
-                      Aminosteril N-Hepa Rebate 2025
-                    </label>
-                    <label class="checkbox-container select-box">
-                      <input type="checkbox" />
-                      <span class="custom-checkbox m-0"></span>
-                      Omegaven Rebate 2025
-                    </label>
-                  </div>
-                  <div className="Divider">
-
-                </div>
-                 
                 </div>
               </div>
             </div> :''
@@ -601,8 +571,49 @@ const applyfilter =()=>{
                 </> :''
             }
 
+
+            {
+             xcelData?.id===5 ? <div className="col-3">
+              <div className="Products-Forecast">
+                <div className="d-flex justify-content-between filter-height">
+                  <div className="products-categories">
+                    <p className="">Program</p>
+                    {/* <p className='period-selection'>2 Products Selected</p> */}
+
+                    <label class="checkbox-container select-box">
+                      <input type="checkbox" />
+                      <span class="custom-checkbox m-0"></span>
+                      Select All
+                    </label>
+
+                    <label class="checkbox-container select-box">
+                      <input type="checkbox" />
+                      <span class="custom-checkbox m-0"></span>
+                      Aminomix Rebate 2025
+                    </label>
+                    <label class="checkbox-container select-box">
+                      <input type="checkbox" />
+                      <span class="custom-checkbox m-0"></span>
+                      Aminosteril N-Hepa Rebate 2025
+                    </label>
+                    <label class="checkbox-container select-box">
+                      <input type="checkbox" />
+                      <span class="custom-checkbox m-0"></span>
+                      Omegaven Rebate 2025
+                    </label>
+                  </div>
+                  <div className="Divider">
+
+                </div>
+                 
+                </div>
+              </div>
+            </div> :''
+            }
+
             
-            {xcelData?.id === 1||xcelData?.id===4 && (
+            
+            {xcelData?.id === 1||xcelData?.id===4 ? (
               <div className="col-3">
                 <div className="Wholesale-forecast">
                   <div className="d-flex justify-content-between filter-height">
@@ -641,7 +652,7 @@ const applyfilter =()=>{
                   </div>
                 </div>
               </div>
-            )}
+            ):''}
 
             {xcelData?.id === 2 && (
               <div className="col-3">
